@@ -1,0 +1,342 @@
+5
+audiotest_____________kills:__0/__0____
+4097.000000
+100.000000
+0.000000
+25.000000
+0.000000
+0.000000
+0.000000
+1.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+1
+audiotest
+164.231651
+m
+mmnmmommommnonmmonqnmmo
+abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba
+mmmmmaaaaammmmmaaaaaabcdefgabcdefg
+mamamamamama
+jklmnopqrstuvwxyzyxwvutsrqponmlkj
+nmonqnmomnmomomno
+mmmaaaabcdefgmmmmaaaammmaamm
+mmmaaammmaaammmabcdefaaaammmmabcdefmmmaaaa
+aaaaaaaazzzzzzzz
+mmamammmmammamamaaamammma
+abcdefghijklmnopqrrqponmlkjihgfedcba
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+a
+{
+"self" "1"
+"other" "0"
+"world" "0"
+"time" "164.215652"
+"frametime" "0.016002"
+"force_retouch" "0.000000"
+"mapname" "audiotest"
+"deathmatch" "0.000000"
+"coop" "0.000000"
+"teamplay" "0.000000"
+"serverflags" "0.000000"
+"total_secrets" "0.000000"
+"total_monsters" "0.000000"
+"found_secrets" "0.000000"
+"killed_monsters" "0.000000"
+"parm1" "4097.000000"
+"parm2" "100.000000"
+"parm3" "0.000000"
+"parm4" "25.000000"
+"parm5" "0.000000"
+"parm6" "0.000000"
+"parm7" "0.000000"
+"parm8" "1.000000"
+"parm9" "0.000000"
+"parm10" "0.000000"
+"parm11" "0.000000"
+"parm12" "0.000000"
+"parm13" "0.000000"
+"parm14" "0.000000"
+"parm15" "0.000000"
+"parm16" "0.000000"
+"trace_allsolid" "0.000000"
+"trace_startsolid" "0.000000"
+"trace_fraction" "0.401431"
+"trace_plane_dist" "-992.000000"
+"trace_ent" "0"
+"trace_inopen" "1.000000"
+"trace_inwater" "1.000000"
+"msg_entity" "0"
+"movedist" "0.000000"
+"gameover" "0.000000"
+"string_null" ""
+"newmis" "0"
+"activator" "0"
+"damage_attacker" "0"
+"framecount" "10180.000000"
+"skill" "1.000000"
+"known_release" "0.000000"
+"lastnameused" ""
+"cutscene" "0.000000"
+"mindex_inviso" "38.000000"
+"total_not_in_coop" "0.000000"
+"total_not_in_sp" "0.000000"
+"total_not_on_skill2" "0.000000"
+"total_not_on_skill3" "0.000000"
+"done_inhibition_summary" "1.000000"
+"enemy_vis" "0.000000"
+"enemy_infront" "0.000000"
+"enemy_range" "0.000000"
+"enemy_yaw" "0.000000"
+"sight_entity" "0"
+"sight_entity_time" "0.000000"
+"highest_custom_key" "0.000000"
+"multi_ent" "0"
+"multi_damage" "0.000000"
+"lastspawn" "0"
+"bodyque_head" "2"
+"modelindex_eyes" "39.000000"
+"modelindex_player" "37.000000"
+"intermission_running" "0.000000"
+"intermission_exittime" "0.000000"
+"nextmap" ""
+"s" "0"
+"le1" "0"
+"le2" "0"
+"lightning_end" "0.000000"
+"hknight_type" "0.000000"
+"shub" "0"
+"elv_butn_dir" "0.000000"
+}
+{ // #0
+"modelindex" "1.000000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"classname" "worldspawn"
+"model" "maps/audiotest.bsp"
+"wad" "C:/_Projects/QuakeDev/wads/makkon_horror.wad;C:/_Projects/QuakeDev/wads/makkon_tech.wad;C:/_Projects/QuakeDev/wads/makkon_industrial.wad;C:/_Projects/QuakeDev/wads/devqtex_v2.wad;C:/_Projects/QuakeDev/wads/skips_2018.wad"
+}
+{ // #1
+"modelindex" "37.000000"
+"absmin" "-310.738953 830.994873 15.031250"
+"absmax" "-276.738953 864.994873 73.031250"
+"movetype" "3.000000"
+"solid" "3.000000"
+"origin" "-293.738953 847.994873 40.031250"
+"oldorigin" "-294.365845 847.994873 40.839066"
+"velocity" "39.176155 0.000000 0.000000"
+"angles" "-1.166382 29.152222 1.093836"
+"punchangle" "-0.000000 0.000000 0.000000"
+"classname" "player"
+"model" "progs/player.mdl"
+"frame" "6.000000"
+"mins" "-16.000000 -16.000000 -24.000000"
+"maxs" "16.000000 16.000000 32.000000"
+"size" "32.000000 32.000000 56.000000"
+"think" "player_run"
+"nextthink" "164.238831"
+"health" "100.000000"
+"weapon" "1.000000"
+"weaponmodel" "progs/v_shot.mdl"
+"currentammo" "21.000000"
+"ammo_shells" "21.000000"
+"items" "4353.000000"
+"takedamage" "2.000000"
+"view_ofs" "0.000000 0.000000 22.000000"
+"v_angle" "3.499146 29.152222 0.000000"
+"netname" "player"
+"flags" "4616.000000"
+"colormap" "1.000000"
+"team" "1.000000"
+"max_health" "100.000000"
+"watertype" "-1.000000"
+"th_pain" "player_pain"
+"th_die" "PlayerDie"
+"walkframe" "1.000000"
+"attack_finished" "74.337440"
+"show_hostile" "74.837440"
+"jump_flag" "-254.738342"
+"air_finished" "176.215652"
+"deathtype" ""
+"dmg" "2.000000"
+"script_delay" "1.000000"
+"script_count" "2.000000"
+}
+{ // #2
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "3"
+}
+{ // #3
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "4"
+}
+{ // #4
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "5"
+}
+{ // #5
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "2"
+}
+{ // #6
+"absmin" "79.000000 -289.000000 39.000000"
+"absmax" "81.000000 -287.000000 41.000000"
+"origin" "80.000000 -288.000000 40.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "info_player_start"
+}
+{ // #7
+"absmin" "23.000000 -217.000000 127.000000"
+"absmax" "25.000000 -215.000000 129.000000"
+"origin" "24.000000 -216.000000 128.000000"
+"classname" "ambient_drip"
+}
+{ // #8
+"absmin" "-433.000000 615.000000 53.000000"
+"absmax" "-431.000000 617.000000 55.000000"
+"origin" "-432.000000 616.000000 54.000000"
+"classname" "misc_sparks"
+"use" "sparks_use"
+"think" "make_sparks"
+"nextthink" "164.274521"
+"movedir" "0.000000 0.000000 -30.000000"
+"wait" "2.000000"
+"cnt" "15.000000"
+}
+{ // #9
+}
+{ // #10
+}
+{ // #11
+}
+{ // #12
+}
+{ // #13
+}
+{ // #14
+}
+{ // #15
+}
+{ // #16
+}
+{ // #17
+}
+{ // #18
+}
+{ // #19
+}
+{ // #20
+}
+{ // #21
+}
+{ // #22
+}
+{ // #23
+}
+{ // #24
+}
+{ // #25
+}
+{ // #26
+}
+{ // #27
+}
+{ // #28
+}
+{ // #29
+}
+{ // #30
+}
+{ // #31
+}
+{ // #32
+}
+{ // #33
+}
+{ // #34
+}
+{ // #35
+}
+{ // #36
+}
+{ // #37
+}
+{ // #38
+}
+{ // #39
+}
+{ // #40
+}
+{ // #41
+}
+{ // #42
+}
+{ // #43
+}
+{ // #44
+}
+// 45 edicts
