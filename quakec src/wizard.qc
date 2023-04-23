@@ -72,6 +72,11 @@ void(entity missile, float mspeed, float accuracy) LaunchMissile =
 	missile.angles = '0 0 0';
 	missile.angles_y = vectoyaw(missile.velocity);
 
+	if (self.projexpl)
+	{
+		missile.touch = T_WizardMisTouch;
+	}
+
 // set missile duration
 	missile.nextthink = time + 5;
 	missile.think = SUB_Remove;
@@ -195,6 +200,8 @@ void() Wiz_FastFire =
 {
 	local vector		vec;
 	local vector		dst;
+	local entity oldself;
+	local float projspeed = self.owner.proj_speed_mod * 600;
 
 	if (self.owner.health > 0)
 	{
@@ -206,11 +213,25 @@ void() Wiz_FastFire =
 		vec = normalize(dst - self.origin);
 		// sound_attack (self, CHAN_WEAPON, "wizard/wattack.wav", 1, ATTN_NORM);
 		launch_spike (self.origin, vec);
-		newmis.velocity = vec*600;
+		SetSpeed(newmis, vec, projspeed);
 		newmis.owner = self.owner;
 		newmis.classname = "wizspike";
-		setmodel (newmis, "progs/w_spike.mdl");
+		if (self.owner.projexpl)
+		{
+			// dprint("spawning exploding wizard proj from fastfire\n");
+			newmis.touch = T_WizardMisTouch;
+		}
+		if (self.owner.homing)
+		{
+			oldself = self;
+			self = self.owner;
+			SetupHoming(newmis, projspeed);
+			self = oldself;
+		}
+		setmodel(newmis, self.owner.mdl_proj);
+		newmis.skin = self.owner.skin_proj;
 		setsize (newmis, VEC_ORIGIN, VEC_ORIGIN);
+
 	}
 
 	remove (self);
@@ -251,9 +272,9 @@ void() Wiz_idlesound =
 local float wr;
 	wr = random() * 5;
 
-	if (self.waitmin < time)
+	if (self.fly_sound < time)
 	{
-	 	self.waitmin = time + 2;
+	 	self.fly_sound = time + 2;
 	 	if (wr > 4.5)
 	 		sound_idle (self, CHAN_VOICE, "wizard/widle1.wav", 1,  ATTN_IDLE);
 	 	if (wr < 1.5)
@@ -445,6 +466,16 @@ spawn_angry(Choices)
 0 : "Only when trigger spawned, default behavior - not angry"
 1 : "Only when trigger spawned, set to 1 to spawn angry at player"
 
+infight_mode(Choices)
+0 : "Default behavior, only with different classnames"
+1 : "Infight with monsters with the same classname but a different mdl_body"
+2 : "Infight with monsters with the same classname and model but a different skin"
+3 : "Infight no matter what"
+
+projexpl(choices) : "Exploding projectiles"
+0 : "No explosions"
+1 : "All projectiles explode"
+
 health(integer) : "Set this to a custom health amount"
 pain_target(string) : "Fire this target when pain_threshold is reached"
 pain_threshold(integer) : "Fire pain_target when health drops below this amount"
@@ -460,18 +491,26 @@ void() monster_wizard =
 	if (SUB_Inhibit ())  // new spawnflags for all entities -- iw
 		return;
 
+	if (self.spawnflags & I_AM_TURRET)
+		objerror("Incompatible spawnflag: TURRET_MODE\n");
+
 	if (deathmatch)
 	{
 		remove(self);
 		return;
 	}
 
+	if (!self.mdl_proj)
+	{
+		self.mdl_proj = "progs/w_spike.mdl";
+	}
+
 	// dumptruck_ds custom_mdls
 	precache_body_model ("progs/wizard.mdl");
 	precache_head_model ("progs/h_wizard.mdl");
-	precache_model ("progs/w_spike.mdl");
+	precache_proj_model ("progs/w_spike.mdl");
 	////dumptruck_ds
-	precache_sound ("wizard/hit.wav");		// used by c code
+	precache_sound_hit ("wizard/hit.wav");		// used by c code
 	precache_sound_attack ("wizard/wattack.wav");
 	precache_sound_death ("wizard/wdeath.wav");
 	precache_sound_idle ("wizard/widle1.wav");
@@ -490,6 +529,11 @@ void() monster_wizard =
 	// setmodel (self, "progs/wizard.mdl"); //dumptruck_ds
 
 	setsize (self, '-16 -16 -24', '16 16 40');
+
+	if (!self.proj_speed_mod)
+	{
+		self.proj_speed_mod = 1;
+	}
 
 	if (!self.health) //thanks RennyC -- dumptruck_ds
 	self.health = 80;

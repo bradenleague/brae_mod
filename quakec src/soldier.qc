@@ -64,7 +64,7 @@ void() GruntFireGrenade =
 
 	// self.effects = self.effects | EF_MUZZLEFLASH; //redundant -- dumptruck_ds
 
-	sound (self, CHAN_WEAPON, "weapons/grenade.wav", 1, ATTN_NORM);
+	sound_attack (self, CHAN_WEAPON, "weapons/grenade.wav", 1, ATTN_NORM);
 
 	missile = spawn ();
 	missile.owner = self;
@@ -123,7 +123,10 @@ void() MonFireSpike =
     local vector dir;
     // local entity old;
 
-    sound (self, CHAN_WEAPON, "weapons/spike2.wav", 1, ATTN_NORM);
+    sound_attack (self, CHAN_WEAPON, "weapons/rocket1i.wav", 1, ATTN_NORM);
+	if (self.style == 5)
+	self.attack_finished = time + 1.5;
+	else
     self.attack_finished = time + 0.2;
 
     dir = normalize (self.enemy.origin - self.origin);
@@ -132,7 +135,7 @@ void() MonFireSpike =
     launch_spike (self.origin + v_forward * 30 + v_right * 5 + '0 0 12', dir);  //dumptruck_ds
     // launch_spike (self.origin + '0 0 16', dir);
 
-    newmis.touch = superspike_touch;
+    //newmis.touch = superspike_touch;
     // setmodel (newmis, "progs/s_spike.mdl");
 		if (self.mdl_proj != "") // dumptruck_ds
 		{
@@ -207,17 +210,64 @@ void()	army_run6	=[	$run6,		army_run7	] {ai_run(15);};
 void()	army_run7	=[	$run7,		army_run8	] {ai_run(10);};
 void()	army_run8	=[	$run8,		army_run1	] {ai_run(8);};
 
-void()	army_atk1	=[	$shoot1,	army_atk2	] {ai_face();};
+
+void() army_atk6;
+void()	army_atk1	=[	$shoot1,	army_atk2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*4);};
 void()	army_atk2	=[	$shoot2,	army_atk3	] {ai_face();};
 void()	army_atk3	=[	$shoot3,	army_atk4	] {ai_face();};
 void()	army_atk4	=[	$shoot4,	army_atk5	] {ai_face();};
-void()	army_atk5	=[	$shoot5,	army_atk6	] {ai_face();army_fire();
+void()	army_atk5	={
+self.frame = $shoot5;
+self.nextthink = time + .1;
+if (self.style == 5 && self.count < self.t_length) 
+{
+  self.count +=1;
+}
+else 
+{
+  self.think = army_atk6;
+}
+ai_face();
+army_fire();
 self.effects = self.effects | EF_MUZZLEFLASH;};
 void()	army_atk6	=[	$shoot6,	army_atk7	] {ai_face();};
 void()	army_atk7	=[	$shoot7,	army_atk8	] {ai_face();SUB_CheckRefire (army_atk1);};
 void()	army_atk8	=[	$shoot8,	army_atk9	] {ai_face();};
 void()	army_atk9	=[	$shoot9,	army_run1	] {ai_face();};
-
+// new frames for turrets
+void() army_turret_atk6;
+void()	army_turret_atk1	=[	$shoot1,	army_turret_atk2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*4);};
+void()	army_turret_atk2	=[	$shoot2,	army_turret_atk3	] {ai_face();self.attack_elevation = IterateElevation(OGRE_DEFAULT_ELEVATION, self.enemy.origin);};
+void()	army_turret_atk3	=[	$shoot3,	army_turret_atk4	] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void()	army_turret_atk4	=[	$shoot4,	army_turret_atk5	] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void()	army_turret_atk5	={
+self.frame = $shoot5;
+self.nextthink = time + .1;
+if (self.style == 5 && self.count < self.t_length) 
+{
+  self.count +=1;
+}
+else 
+{
+  self.think = army_turret_atk6;
+}
+ai_face();
+army_fire();
+self.effects = self.effects | EF_MUZZLEFLASH;};
+void()	army_turret_atk6	=[	$shoot6,	army_turret_atk7	] {ai_face();};
+void()	army_turret_atk7	=[	$shoot7,	army_turret_atk8	] {ai_face();SUB_CheckRefire (army_turret_atk1);};
+void()	army_turret_atk8	=[	$shoot8,	army_turret_atk9	] {ai_face();};
+void()	army_turret_atk9	=[	$stand4,	army_turret_atk10	] {ai_face();};
+void()	army_turret_atk10	=[	$stand5,	army_seeking_stand1	] {ai_face();};
+void()	army_seeking_stand1	=[	$stand1,	army_seeking_stand2	] {ai_run(0);};
+void()	army_seeking_stand2	=[	$stand2,	army_seeking_stand3	] {ai_run(0);};
+void()	army_seeking_stand3	=[	$stand3,	army_seeking_stand4	] {ai_run(0);};
+void()	army_seeking_stand4	=[	$stand4,	army_seeking_stand5	] {ai_run(0);};
+void()	army_seeking_stand5	=[	$stand5,	army_seeking_stand6	] {ai_run(0);};
+void()	army_seeking_stand6	=[	$stand6,	army_seeking_stand7	] {ai_run(0);};
+void()	army_seeking_stand7	=[	$stand7,	army_seeking_stand8	] {ai_run(0);};
+void()	army_seeking_stand8	=[	$stand8,	army_seeking_stand1	] {ai_run(0);};
+// new frames for turrets end
 
 void()	army_pain1	=[	$pain1,		army_pain2	] {};
 void()	army_pain2	=[	$pain2,		army_pain3	] {};
@@ -265,22 +315,31 @@ void(entity attacker, float damage)	army_pain =
 	r = random();
 
 	if (r < 0.2)
-	{
+	{  // turret checks moved here to play pain sounds correctly - dumptruck_ds
 		self.pain_finished = time + 0.6;
-		army_pain1 ();
 		sound_pain (self, CHAN_VOICE, "soldier/pain1.wav", 1, ATTN_NORM);
+		if (self.spawnflags & I_AM_TURRET)
+			return;
+		else
+		army_pain1 ();
 	}
 	else if (r < 0.6)
 	{
 		self.pain_finished = time + 1.1;
-		army_painb1 ();
 		sound_misc (self, CHAN_VOICE, "soldier/pain2.wav", 1, ATTN_NORM);
+		if (self.spawnflags & I_AM_TURRET)
+			return;
+		else
+		army_painb1 ();
 	}
 	else
 	{
 		self.pain_finished = time + 1.1;
-		army_painc1 ();
 		sound_misc (self, CHAN_VOICE, "soldier/pain2.wav", 1, ATTN_NORM);
+		if (self.spawnflags & I_AM_TURRET)
+			return;
+		else
+		army_painc1 ();
 	}
 };
 
@@ -299,6 +358,11 @@ else if (self.style == 2)
 
 	{
 		ai_face();
+		if (self.spawnflags & I_AM_TURRET)
+			{
+				PreachFireGrenade(self.attack_elevation);
+			}
+		else
 		GruntFireGrenade();
 	}
 
@@ -309,7 +373,7 @@ else if (self.style == 3)
 		genforcer_fire();
 	}
 
-else if (self.style == 4)
+else if (self.style == 4 || self.style == 5)
 
 	{
 		ai_face();
@@ -354,7 +418,7 @@ void()	army_die3	=[	$death3,	army_die4	]
 	{
 		self.ammo_cells = 5;
 	}
-	if (self.style == 4)
+	if (self.style == 4 || self.style == 5)
 	{
 		self.ammo_nails = 5;
 	}
@@ -388,7 +452,7 @@ void()	army_cdie3	=[	$deathc3,	army_cdie4	]
 	{
 		self.ammo_cells = 5;
 	}
-	if (self.style == 4)
+	if (self.style == 4 || self.style == 5)
 	{
 		self.ammo_nails = 5;
 	}
@@ -512,6 +576,12 @@ spawn_angry(Choices)
 0 : "Only when trigger spawned, default behavior - not angry"
 1 : "Only when trigger spawned, set to 1 to spawn angry at player"
 
+infight_mode(Choices)
+0 : "Default behavior, only with different classnames"
+1 : "Infight with monsters with the same classname but a different mdl_body"
+2 : "Infight with monsters with the same classname and model but a different skin"
+3 : "Infight no matter what"
+
 health(integer) : "Set this to a custom health amount"
 pain_target(string) : "Fire this target when pain_threshold is reached"
 pain_threshold(integer) : "Fire pain_target when health drops below this amount"
@@ -566,13 +636,26 @@ void() monster_army =
 
 	setsize (self, '-16 -16 -24', '16 16 40');
 
+	if (!self.proj_speed_mod)
+	{
+		self.proj_speed_mod = 1;
+	}
+
 	if (!self.health) //thanks RennyC -- dumptruck_ds
 	self.health = 30;
 
 	self.th_stand = army_stand1;
 	self.th_walk = army_walk1;
-	self.th_run = army_run1;
+	if (self.spawnflags & I_AM_TURRET)
+	{
+	  self.th_run = army_seeking_stand1;
+	}
+	else
+	{
+		self.th_run = army_run1;
+	}
 	self.th_missile = army_atk1;
+	self.th_turret = army_turret_atk1;
 	if !(self.berserk) //Berserk test from http://celephais.net/board/view_thread.php?id=4&start=3465 -- dumptruck_ds
 	self.th_pain = army_pain;
 	else

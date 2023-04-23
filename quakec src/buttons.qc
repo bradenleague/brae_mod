@@ -9,8 +9,13 @@ void() button_wait =
 	self.nextthink = self.ltime + self.wait;
 	self.think = button_return;
 	activator = self.enemy;
-	SUB_UseTargets();
 	self.frame = 1;			// use alternate textures
+
+	if (self.estate != STATE_ACTIVE)
+		return;
+	
+	SUB_UseTargets();
+	
 };
 
 void() button_done =
@@ -20,6 +25,8 @@ void() button_done =
 
 void() button_return =
 {
+	if (self.estate != STATE_ACTIVE) return;
+
 	self.state = STATE_DOWN;
 	SUB_CalcMove (self.pos1, self.speed, button_done);
 	self.frame = 0;			// use normal textures
@@ -35,6 +42,8 @@ void() button_blocked =
 
 void() button_fire =
 {
+	if (self.estate != STATE_ACTIVE) return;
+
 	if (self.state == STATE_UP || self.state == STATE_TOP)
 		return;
 
@@ -61,11 +70,66 @@ void() button_touch =
 
 void() button_killed =
 {
+	if (self.estate != STATE_ACTIVE) return;
+
 	self.enemy = damage_attacker;
 	self.health = self.max_health;
 	self.takedamage = DAMAGE_NO;	// wil be reset upon return
 	button_fire ();
 };
+
+
+
+// adapted from Copper, thanks Lunaran
+void(entity b) button_lock =
+{
+	entity oself;
+
+	if (b.estate == STATE_INACTIVE)
+		return;
+
+	oself = self;
+	self = b;
+
+	if (self.state == STATE_UP || self.state == STATE_TOP)
+		self.prevstate = STATE_TOP;
+	else 
+		self.prevstate = STATE_BOTTOM;
+
+	if (self.max_health)
+		self.takedamage = DAMAGE_NO;
+	self.state = STATE_UP;
+	SUB_CalcMove (self.pos2, self.speed, button_wait);
+	self.estate = STATE_INACTIVE;
+
+	self = oself;
+}
+
+void(entity b, float dontresetstate) button_unlock =
+{
+	entity oself;
+
+	if (b.estate == STATE_ACTIVE)
+		return;
+
+	oself = self;
+	self = b;
+
+	if (!dontresetstate || self.wait != -1 || self.prevstate == STATE_BOTTOM) {
+		if (self.max_health)
+		{
+			self.takedamage = DAMAGE_YES;
+			self.health = self.max_health;
+		}
+		self.frame = 0;			// use normal textures
+		self.state = STATE_DOWN;
+		SUB_CalcMove (self.pos1, self.speed, button_done);
+	}
+
+	self.estate = STATE_ACTIVE;
+
+	self = oself;
+}
 
 
 /*QUAKED func_button (0 .5 .8) ? X X X X X X X X NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD_OR_NIGHTMARE NOT_IN_DEATHMATCH NOT_IN_COOP NOT_IN_SINGLEPLAYER X NOT_ON_HARD_ONLY NOT_ON_NIGHTMARE_ONLY

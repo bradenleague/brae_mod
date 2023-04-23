@@ -1,0 +1,1258 @@
+5
+hallway01_____________kills:__0/__0____
+4097.000000
+100.000000
+0.000000
+100.000000
+0.000000
+0.000000
+0.000000
+1.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+0.000000
+1
+hallway01
+30.401910
+m
+mmnmmommommnonmmonqnmmo
+abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba
+mmmmmaaaaammmmmaaaaaabcdefgabcdefg
+mamamamamama
+jklmnopqrstuvwxyzyxwvutsrqponmlkj
+nmonqnmomnmomomno
+mmmaaaabcdefgmmmmaaaammmaamm
+mmmaaammmaaammmabcdefaaaammmmabcdefmmmaaaa
+aaaaaaaazzzzzzzz
+mmamammmmammamamaaamammma
+abcdefghijklmnopqrrqponmlkjihgfedcba
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+m
+a
+{
+"self" "1"
+"other" "0"
+"world" "0"
+"time" "30.385912"
+"frametime" "0.015997"
+"force_retouch" "0.000000"
+"mapname" "hallway01"
+"deathmatch" "0.000000"
+"coop" "0.000000"
+"teamplay" "0.000000"
+"serverflags" "0.000000"
+"total_secrets" "0.000000"
+"total_monsters" "0.000000"
+"found_secrets" "0.000000"
+"killed_monsters" "0.000000"
+"parm1" "4097.000000"
+"parm2" "100.000000"
+"parm3" "0.000000"
+"parm4" "100.000000"
+"parm5" "0.000000"
+"parm6" "0.000000"
+"parm7" "0.000000"
+"parm8" "1.000000"
+"parm9" "0.000000"
+"parm10" "0.000000"
+"parm11" "0.000000"
+"parm12" "0.000000"
+"parm13" "0.000000"
+"parm14" "0.000000"
+"parm15" "0.000000"
+"parm16" "0.000000"
+"trace_allsolid" "0.000000"
+"trace_startsolid" "0.000000"
+"trace_fraction" "0.386143"
+"trace_plane_dist" "331.860474"
+"trace_ent" "19"
+"trace_inopen" "1.000000"
+"trace_inwater" "0.000000"
+"msg_entity" "0"
+"movedist" "0.000000"
+"gameover" "0.000000"
+"string_null" ""
+"newmis" "0"
+"activator" "1"
+"damage_attacker" "1"
+"framecount" "1817.000000"
+"skill" "1.000000"
+"known_release" "0.000000"
+"lastnameused" "cl6"
+"cutscene" "0.000000"
+"mindex_inviso" "53.000000"
+"total_not_in_coop" "0.000000"
+"total_not_in_sp" "0.000000"
+"total_not_on_skill2" "0.000000"
+"total_not_on_skill3" "0.000000"
+"done_inhibition_summary" "1.000000"
+"enemy_vis" "0.000000"
+"enemy_infront" "0.000000"
+"enemy_range" "0.000000"
+"enemy_yaw" "0.000000"
+"sight_entity" "0"
+"sight_entity_time" "0.000000"
+"highest_custom_key" "0.000000"
+"multi_ent" "0"
+"multi_damage" "0.000000"
+"lastspawn" "0"
+"bodyque_head" "2"
+"modelindex_eyes" "54.000000"
+"modelindex_player" "52.000000"
+"intermission_running" "0.000000"
+"intermission_exittime" "0.000000"
+"nextmap" ""
+"s" "0"
+"le1" "0"
+"le2" "0"
+"lightning_end" "0.000000"
+"hknight_type" "0.000000"
+"shub" "0"
+"elv_butn_dir" "0.000000"
+}
+{ // #0
+"modelindex" "1.000000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"classname" "worldspawn"
+"model" "maps/hallway01.bsp"
+"wad" "C:/_Projects/QuakeDev/wads/makkon_industrial.wad;C:/_Projects/QuakeDev/wads/makkon_horror.wad;C:/_Projects/QuakeDev/wads/makkon_tech.wad"
+}
+{ // #1
+"modelindex" "52.000000"
+"absmin" "83.031250 -216.968750 391.031250"
+"absmax" "117.031250 -182.968750 449.031250"
+"movetype" "3.000000"
+"solid" "3.000000"
+"origin" "100.031250 -199.968750 416.031250"
+"oldorigin" "100.356628 -199.968750 416.031250"
+"angles" "0.924683 87.725830 -1.667427"
+"classname" "player"
+"model" "progs/player.mdl"
+"frame" "3.000000"
+"mins" "-16.000000 -16.000000 -24.000000"
+"maxs" "16.000000 16.000000 32.000000"
+"size" "32.000000 32.000000 56.000000"
+"think" "player_run"
+"nextthink" "30.409931"
+"health" "100.000000"
+"weapon" "4096.000000"
+"weaponmodel" "progs/v_axe.mdl"
+"ammo_shells" "100.000000"
+"items" "4097.000000"
+"takedamage" "2.000000"
+"view_ofs" "0.000000 0.000000 22.000000"
+"v_angle" "-2.774048 87.725830 0.000000"
+"netname" "player"
+"flags" "4616.000000"
+"colormap" "1.000000"
+"team" "1.000000"
+"max_health" "100.000000"
+"watertype" "-1.000000"
+"th_pain" "player_pain"
+"th_die" "PlayerDie"
+"walkframe" "4.000000"
+"attack_finished" "3.909851"
+"show_hostile" "4.409851"
+"jump_flag" "-157.632385"
+"air_finished" "42.385910"
+"deathtype" ""
+"dmg" "2.000000"
+"script_delay" "1.000000"
+"script_count" "2.000000"
+}
+{ // #2
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "3"
+}
+{ // #3
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "4"
+}
+{ // #4
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "5"
+}
+{ // #5
+"absmin" "-1.000000 -1.000000 -1.000000"
+"absmax" "1.000000 1.000000 1.000000"
+"classname" "bodyque"
+"owner" "2"
+}
+{ // #6
+"modelindex" "2.000000"
+"absmin" "79.000000 274.923035 499.000000"
+"absmax" "209.000000 284.923035 561.000000"
+"ltime" "1.585714"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 52.000000"
+"classname" "door"
+"model" "*1"
+"mins" "80.000000 275.923035 448.000000"
+"maxs" "208.000000 283.923035 508.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.585714"
+"enemy" "10"
+"targetname" "cooldoor1"
+"owner" "6"
+"movedir" "0.000000 0.000000 1.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "35.000000"
+"attack_finished" "30.290077"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 52.000000"
+}
+{ // #7
+"modelindex" "3.000000"
+"absmin" "83.000000 906.961548 495.000000"
+"absmax" "205.000000 940.961548 505.000000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"classname" "togglewall"
+"mins" "84.000000 907.961548 496.000000"
+"maxs" "204.000000 939.961548 504.000000"
+"size" "120.000000 32.000000 8.000000"
+"touch" "blocker_touch"
+"use" "blocker_use"
+"spawnflags" "1.000000"
+"targetname" "cl1"
+"noise" "misc/null.wav"
+"noise1" "misc/null.wav"
+"mdl" "*2"
+"state" "1.000000"
+}
+{ // #8
+"modelindex" "4.000000"
+"absmin" "195.000000 531.000000 391.000000"
+"absmax" "257.000000 541.000000 505.000000"
+"ltime" "1.585714"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "52.000000 0.000000 0.000000"
+"classname" "door"
+"model" "*3"
+"mins" "144.000000 532.000000 392.000000"
+"maxs" "204.000000 540.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.585714"
+"enemy" "9"
+"targetname" "cooldoor2"
+"owner" "8"
+"movedir" "1.000000 0.000000 -0.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "35.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "52.000000 0.000000 0.000000"
+"lip" "8.000000"
+"pos2" "52.000000 0.000000 0.000000"
+}
+{ // #9
+"modelindex" "5.000000"
+"absmin" "31.000000 531.000000 391.000000"
+"absmax" "93.000000 541.000000 505.000000"
+"ltime" "1.585714"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "-52.000000 -0.000005 0.000000"
+"classname" "door"
+"model" "*4"
+"mins" "84.000000 532.000000 392.000000"
+"maxs" "144.000000 540.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.585714"
+"enemy" "8"
+"targetname" "cooldoor2"
+"owner" "8"
+"movedir" "-1.000000 -0.000000 -0.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "35.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "-52.000000 -0.000005 0.000000"
+"lip" "8.000000"
+"pos2" "-52.000000 -0.000005 0.000000"
+}
+{ // #10
+"modelindex" "6.000000"
+"absmin" "79.000000 274.923035 335.000000"
+"absmax" "209.000000 284.923035 397.000000"
+"ltime" "1.585714"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 -52.000000"
+"classname" "door"
+"model" "*5"
+"mins" "80.000000 275.923035 388.000000"
+"maxs" "208.000000 283.923035 448.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.585714"
+"enemy" "6"
+"targetname" "cooldoor1"
+"owner" "6"
+"movedir" "0.000000 0.000000 -1.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "35.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 -52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 -52.000000"
+}
+{ // #11
+"modelindex" "7.000000"
+"absmin" "31.000000 1043.000000 391.000000"
+"absmax" "93.000000 1053.000000 505.000000"
+"ltime" "1.255556"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "-52.000000 -0.000005 0.000000"
+"classname" "door"
+"model" "*6"
+"mins" "84.000000 1044.000000 392.000000"
+"maxs" "144.000000 1052.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.255556"
+"enemy" "14"
+"targetname" "cooldoor4"
+"owner" "11"
+"movedir" "-1.000000 -0.000000 -0.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "45.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "-52.000000 -0.000005 0.000000"
+"lip" "8.000000"
+"pos2" "-52.000000 -0.000005 0.000000"
+}
+{ // #12
+"modelindex" "8.000000"
+"absmin" "79.000000 786.923035 499.000000"
+"absmax" "209.000000 796.923035 561.000000"
+"ltime" "1.400000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 52.000000"
+"classname" "door"
+"model" "*7"
+"mins" "80.000000 787.923035 448.000000"
+"maxs" "208.000000 795.923035 508.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.400000"
+"enemy" "13"
+"targetname" "cooldoor3"
+"owner" "12"
+"movedir" "0.000000 0.000000 1.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "40.000000"
+"attack_finished" "28.690081"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 52.000000"
+}
+{ // #13
+"modelindex" "9.000000"
+"absmin" "79.000000 786.923035 335.000000"
+"absmax" "209.000000 796.923035 397.000000"
+"ltime" "1.400000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 -52.000000"
+"classname" "door"
+"model" "*8"
+"mins" "80.000000 787.923035 388.000000"
+"maxs" "208.000000 795.923035 448.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.400000"
+"enemy" "12"
+"targetname" "cooldoor3"
+"owner" "12"
+"movedir" "0.000000 0.000000 -1.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "40.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 -52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 -52.000000"
+}
+{ // #14
+"modelindex" "10.000000"
+"absmin" "195.000000 1043.000000 391.000000"
+"absmax" "257.000000 1053.000000 505.000000"
+"ltime" "1.255556"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "52.000000 0.000000 0.000000"
+"classname" "door"
+"model" "*9"
+"mins" "144.000000 1044.000000 392.000000"
+"maxs" "204.000000 1052.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.255556"
+"enemy" "11"
+"targetname" "cooldoor4"
+"owner" "11"
+"movedir" "1.000000 0.000000 -0.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "45.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "52.000000 0.000000 0.000000"
+"lip" "8.000000"
+"pos2" "52.000000 0.000000 0.000000"
+}
+{ // #15
+"modelindex" "11.000000"
+"absmin" "79.000000 1298.923096 335.000000"
+"absmax" "209.000000 1308.923096 397.000000"
+"ltime" "1.140000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 -52.000000"
+"classname" "door"
+"model" "*10"
+"mins" "80.000000 1299.923096 388.000000"
+"maxs" "208.000000 1307.923096 448.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.140000"
+"enemy" "16"
+"targetname" "cooldoor5"
+"owner" "15"
+"movedir" "0.000000 0.000000 -1.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "50.000000"
+"attack_finished" "27.089766"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 -52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 -52.000000"
+}
+{ // #16
+"modelindex" "12.000000"
+"absmin" "79.000000 1298.923096 499.000000"
+"absmax" "209.000000 1308.923096 561.000000"
+"ltime" "1.140000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 52.000000"
+"classname" "door"
+"model" "*11"
+"mins" "80.000000 1299.923096 448.000000"
+"maxs" "208.000000 1307.923096 508.000000"
+"size" "128.000000 8.000000 60.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.140000"
+"enemy" "15"
+"targetname" "cooldoor5"
+"owner" "15"
+"movedir" "0.000000 0.000000 1.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "50.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "0.000000 0.000000 52.000000"
+"lip" "8.000000"
+"pos2" "0.000000 0.000000 52.000000"
+}
+{ // #17
+"modelindex" "13.000000"
+"absmin" "31.000000 1555.000000 391.000000"
+"absmax" "93.000000 1565.000000 505.000000"
+"ltime" "1.400000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "-52.000000 -0.000005 0.000000"
+"classname" "door"
+"model" "*12"
+"mins" "84.000000 1556.000000 392.000000"
+"maxs" "144.000000 1564.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.400000"
+"enemy" "18"
+"targetname" "cooldoor6"
+"owner" "17"
+"movedir" "-1.000000 -0.000000 -0.000000"
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "40.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "-52.000000 -0.000005 0.000000"
+"lip" "8.000000"
+"pos2" "-52.000000 -0.000005 0.000000"
+}
+{ // #18
+"modelindex" "14.000000"
+"absmin" "195.000000 1555.000000 391.000000"
+"absmax" "257.000000 1565.000000 505.000000"
+"ltime" "1.400000"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "52.000000 0.000000 0.000000"
+"classname" "door"
+"model" "*13"
+"mins" "144.000000 1556.000000 392.000000"
+"maxs" "204.000000 1564.000000 504.000000"
+"size" "60.000000 8.000000 112.000000"
+"touch" "door_touch"
+"use" "door_use"
+"think" "door_go_down"
+"blocked" "door_blocked"
+"nextthink" "0.400000"
+"enemy" "17"
+"targetname" "cooldoor6"
+"owner" "17"
+"movedir" "1.000000 0.000000 -0.000000"
+"message" ""
+"sounds" "2.000000"
+"noise1" "doors/hydro2.wav"
+"noise2" "doors/hydro1.wav"
+"noise3" "doors/medtry.wav"
+"speed" "40.000000"
+"wait" "-1.000000"
+"noise4" "doors/meduse.wav"
+"dmg" "2.000000"
+"think1" "door_hit_top"
+"finaldest" "52.000000 0.000000 0.000000"
+"lip" "8.000000"
+"pos2" "52.000000 0.000000 0.000000"
+}
+{ // #19
+"modelindex" "15.000000"
+"absmin" "137.000000 205.961517 404.692322"
+"absmax" "151.000000 217.961517 415.000000"
+"ltime" "0.182692"
+"movetype" "7.000000"
+"solid" "4.000000"
+"origin" "0.000000 0.000000 -7.307678"
+"classname" "func_button"
+"model" "*14"
+"frame" "1.000000"
+"mins" "138.000000 206.961517 413.000000"
+"maxs" "150.000000 216.961517 421.307678"
+"size" "12.000000 10.000000 8.307678"
+"use" "button_use"
+"think" "button_return"
+"blocked" "button_blocked"
+"nextthink" "-0.817308"
+"health" "-2.000000"
+"enemy" "1"
+"max_health" "-2.000000"
+"target" "cooldoor1"
+"movedir" "0.000000 0.000000 -1.000000"
+"noise" "buttons/airbut1.wav"
+"th_die" "button_killed"
+"speed" "40.000000"
+"axhitme" "1.000000"
+"wait" "-1.000000"
+"think1" "button_wait"
+"finaldest" "0.000000 0.000000 -7.307678"
+"lip" "1.000000"
+"pos2" "0.000000 0.000000 -7.307678"
+}
+{ // #20
+"absmin" "143.000000 106.961998 407.000000"
+"absmax" "145.000000 108.961998 409.000000"
+"origin" "144.000000 107.961998 408.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "info_player_start"
+}
+{ // #21
+"absmin" "103.000000 1794.959961 495.000000"
+"absmax" "105.000000 1796.959961 497.000000"
+"origin" "104.000000 1795.959961 496.000000"
+"classname" "ambient_drip"
+}
+{ // #22
+"absmin" "91.000000 1698.959961 487.000000"
+"absmax" "93.000000 1700.959961 489.000000"
+"origin" "92.000000 1699.959961 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl6"
+"light_lev" "250.000000"
+"style" "32.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #23
+"absmin" "195.000000 1698.959961 487.000000"
+"absmax" "197.000000 1700.959961 489.000000"
+"origin" "196.000000 1699.959961 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl6"
+"light_lev" "250.000000"
+"style" "32.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #24
+"absmin" "-353.000000 2626.959961 421.000000"
+"absmax" "-351.000000 2628.959961 423.000000"
+"origin" "-352.000000 2627.959961 422.000000"
+"classname" "misc_sparks"
+"use" "sparks_use"
+"think" "make_sparks"
+"nextthink" "31.427130"
+"movedir" "0.000000 0.000000 -30.000000"
+"wait" "2.000000"
+"cnt" "15.000000"
+}
+{ // #25
+"absmin" "195.000000 1442.959961 487.000000"
+"absmax" "197.000000 1444.959961 489.000000"
+"origin" "196.000000 1443.959961 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl5"
+"light_lev" "250.000000"
+"style" "33.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #26
+"absmin" "91.000000 1442.959961 487.000000"
+"absmax" "93.000000 1444.959961 489.000000"
+"origin" "92.000000 1443.959961 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl5"
+"light_lev" "250.000000"
+"style" "33.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #27
+"absmin" "91.000000 1186.959961 487.000000"
+"absmax" "93.000000 1188.959961 489.000000"
+"origin" "92.000000 1187.959961 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl4"
+"light_lev" "250.000000"
+"style" "34.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #28
+"absmin" "195.000000 1186.959961 487.000000"
+"absmax" "197.000000 1188.959961 489.000000"
+"origin" "196.000000 1187.959961 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl4"
+"light_lev" "250.000000"
+"style" "34.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #29
+"absmin" "91.000000 930.961975 487.000000"
+"absmax" "93.000000 932.961975 489.000000"
+"origin" "92.000000 931.961975 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl3"
+"light_lev" "250.000000"
+"style" "35.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #30
+"absmin" "195.000000 930.961975 487.000000"
+"absmax" "197.000000 932.961975 489.000000"
+"origin" "196.000000 931.961975 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl3"
+"light_lev" "250.000000"
+"style" "35.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #31
+"absmin" "91.000000 418.962006 487.000000"
+"absmax" "93.000000 420.962006 489.000000"
+"origin" "92.000000 419.962006 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl1"
+"light_lev" "250.000000"
+"style" "36.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #32
+"absmin" "195.000000 418.962006 487.000000"
+"absmax" "197.000000 420.962006 489.000000"
+"origin" "196.000000 419.962006 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl1"
+"light_lev" "250.000000"
+"style" "36.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #33
+"absmin" "91.000000 674.961975 487.000000"
+"absmax" "93.000000 676.961975 489.000000"
+"origin" "92.000000 675.961975 488.000000"
+"angles" "0.000000 90.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl2"
+"light_lev" "250.000000"
+"style" "37.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #34
+"absmin" "195.000000 674.961975 487.000000"
+"absmax" "197.000000 676.961975 489.000000"
+"origin" "196.000000 675.961975 488.000000"
+"angles" "0.000000 270.000000 0.000000"
+"classname" "light"
+"use" "light_use"
+"targetname" "cl2"
+"light_lev" "250.000000"
+"style" "37.000000"
+"speed" "0.100000"
+"wait" "2.000000"
+}
+{ // #35
+"absmin" "95.657303 768.622009 487.000000"
+"absmax" "97.657303 770.622009 489.000000"
+"origin" "96.657303 769.622009 488.000000"
+"angles" "0.000000 -2.000000 0.000000"
+"classname" "misc_sparks"
+"use" "sparks_use"
+"think" "make_sparks"
+"nextthink" "31.009182"
+"movedir" "0.000000 0.000000 -30.000000"
+"wait" "5.000000"
+"cnt" "15.000000"
+}
+{ // #36
+"absmin" "71.000000 258.962006 439.000000"
+"absmax" "73.000000 260.962006 441.000000"
+"origin" "72.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl1"
+"targetname" "cooldoor1"
+"delay" "3.500000"
+}
+{ // #37
+"absmin" "55.000000 306.962006 443.000000"
+"absmax" "57.000000 308.962006 445.000000"
+"origin" "56.000000 307.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"targetname" "cl1"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #38
+"absmin" "55.000000 338.962006 443.000000"
+"absmax" "57.000000 340.962006 445.000000"
+"origin" "56.000000 339.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"impulse" "1.000000"
+"targetname" "cl2"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #39
+"absmin" "55.000000 370.962006 443.000000"
+"absmax" "57.000000 372.962006 445.000000"
+"origin" "56.000000 371.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"impulse" "2.000000"
+"targetname" "cl3"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #40
+"absmin" "55.000000 402.962006 443.000000"
+"absmax" "57.000000 404.962006 445.000000"
+"origin" "56.000000 403.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"impulse" "1.000000"
+"targetname" "cl4"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #41
+"absmin" "55.000000 434.962006 443.000000"
+"absmax" "57.000000 436.962006 445.000000"
+"origin" "56.000000 435.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"impulse" "2.000000"
+"targetname" "cl5"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #42
+"absmin" "55.000000 466.962006 443.000000"
+"absmax" "57.000000 468.962006 445.000000"
+"origin" "56.000000 467.962006 444.000000"
+"classname" "play_sound_triggered"
+"use" "play_sound_use"
+"impulse" "3.000000"
+"targetname" "cl6"
+"noise" "breaker_flip.wav"
+"speed" "1.000000"
+"volume" "1.000000"
+}
+{ // #43
+"absmin" "-89.000000 226.962006 439.000000"
+"absmax" "-87.000000 228.962006 441.000000"
+"origin" "-88.000000 227.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cooldoor6"
+"targetname" "cooldoor5"
+"delay" "0.500000"
+}
+{ // #44
+"absmin" "-57.000000 226.962006 439.000000"
+"absmax" "-55.000000 228.962006 441.000000"
+"origin" "-56.000000 227.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cooldoor5"
+"targetname" "cooldoor4"
+"delay" "0.650000"
+}
+{ // #45
+"absmin" "-25.000000 226.962006 439.000000"
+"absmax" "-23.000000 228.962006 441.000000"
+"origin" "-24.000000 227.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cooldoor4"
+"targetname" "cooldoor3"
+"delay" "0.750000"
+}
+{ // #46
+"absmin" "7.000000 226.962006 439.000000"
+"absmax" "9.000000 228.962006 441.000000"
+"origin" "8.000000 227.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cooldoor3"
+"targetname" "cooldoor2"
+"delay" "0.750000"
+}
+{ // #47
+"absmin" "39.000000 226.962006 439.000000"
+"absmax" "41.000000 228.962006 441.000000"
+"origin" "40.000000 227.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cooldoor2"
+"targetname" "cooldoor1"
+"delay" "0.750000"
+}
+{ // #48
+"absmin" "39.000000 258.962006 439.000000"
+"absmax" "41.000000 260.962006 441.000000"
+"origin" "40.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl2"
+"targetname" "cl1"
+"delay" "0.250000"
+}
+{ // #49
+"absmin" "7.000000 258.962006 439.000000"
+"absmax" "9.000000 260.962006 441.000000"
+"origin" "8.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl3"
+"targetname" "cl2"
+"delay" "0.250000"
+}
+{ // #50
+"absmin" "-25.000000 258.962006 439.000000"
+"absmax" "-23.000000 260.962006 441.000000"
+"origin" "-24.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl4"
+"targetname" "cl3"
+"delay" "0.200000"
+}
+{ // #51
+"absmin" "-57.000000 258.962006 439.000000"
+"absmax" "-55.000000 260.962006 441.000000"
+"origin" "-56.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl5"
+"targetname" "cl4"
+"delay" "0.150000"
+}
+{ // #52
+"absmin" "-89.000000 258.962006 439.000000"
+"absmax" "-87.000000 260.962006 441.000000"
+"origin" "-88.000000 259.962006 440.000000"
+"classname" "trigger_relay"
+"use" "SUB_UseTargets"
+"target" "cl6"
+"targetname" "cl5"
+"delay" "0.150000"
+}
+{ // #53
+}
+{ // #54
+}
+{ // #55
+}
+{ // #56
+}
+{ // #57
+}
+{ // #58
+"modelindex" "81.000000"
+"absmin" "-337.818085 2599.859131 383.031250"
+"absmax" "-335.818085 2601.859131 385.031250"
+"movetype" "10.000000"
+"solid" "1.000000"
+"origin" "-336.818085 2600.859131 384.031250"
+"angles" "3647.782959 3647.782959 3647.782959"
+"classname" "spark"
+"model" "progs/spark.mdl"
+"think" "sparks_fade4"
+"nextthink" "30.405695"
+"flags" "512.000000"
+"waterlevel" "-1.000000"
+"watertype" "-1.000000"
+"owner" "24"
+"gravity" "0.300000"
+"alpha" "0.400000"
+}
+{ // #59
+}
+{ // #60
+}
+{ // #61
+}
+{ // #62
+}
+{ // #63
+}
+{ // #64
+}
+{ // #65
+}
+{ // #66
+}
+{ // #67
+}
+{ // #68
+}
+{ // #69
+}
+{ // #70
+"modelindex" "81.000000"
+"absmin" "-349.605194 2595.044434 383.031250"
+"absmax" "-347.605194 2597.044434 385.031250"
+"movetype" "10.000000"
+"solid" "1.000000"
+"origin" "-348.605194 2596.044434 384.031250"
+"angles" "3071.817383 3071.817383 3071.817383"
+"classname" "spark"
+"model" "progs/spark.mdl"
+"think" "sparks_fade3"
+"nextthink" "30.407331"
+"flags" "512.000000"
+"waterlevel" "-1.000000"
+"watertype" "-1.000000"
+"owner" "24"
+"gravity" "0.300000"
+"alpha" "0.600000"
+}
+{ // #71
+}
+{ // #72
+}
+{ // #73
+}
+{ // #74
+}
+{ // #75
+}
+{ // #76
+}
+{ // #77
+}
+{ // #78
+}
+{ // #79
+}
+{ // #80
+}
+{ // #81
+}
+{ // #82
+}
+{ // #83
+}
+{ // #84
+}
+{ // #85
+}
+{ // #86
+}
+{ // #87
+}
+{ // #88
+}
+{ // #89
+}
+{ // #90
+}
+{ // #91
+}
+{ // #92
+}
+{ // #93
+}
+{ // #94
+}
+{ // #95
+}
+{ // #96
+}
+{ // #97
+}
+{ // #98
+}
+{ // #99
+}
+{ // #100
+}
+{ // #101
+}
+{ // #102
+"modelindex" "81.000000"
+"absmin" "-360.874786 2641.570068 383.031250"
+"absmax" "-358.874786 2643.570068 385.031250"
+"movetype" "10.000000"
+"solid" "1.000000"
+"origin" "-359.874786 2642.570068 384.031250"
+"angles" "3503.734375 3503.734375 3503.734375"
+"classname" "spark"
+"model" "progs/spark.mdl"
+"think" "sparks_fade1"
+"nextthink" "30.558462"
+"flags" "512.000000"
+"waterlevel" "-1.000000"
+"watertype" "-1.000000"
+"owner" "24"
+"gravity" "0.300000"
+}
+{ // #103
+}
+{ // #104
+}
+{ // #105
+}
+{ // #106
+}
+{ // #107
+}
+// 108 edicts

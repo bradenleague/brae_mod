@@ -330,7 +330,7 @@ void() worldspawn =
 	InitBodyQue ();
 
 // custom map attributes
-	if (self.model == "maps/e1m8.bsp")
+	if (self.model == "maps/e1m8.bsp" && self.skip_id1_overrides == 0)
 		cvar_set ("sv_gravity", "100");
 	else
 		cvar_set ("sv_gravity", "800");
@@ -474,8 +474,8 @@ void() worldspawn =
 	precache_model2 ("progs/b_g_key.mdl");
 	precache_model ("progs/h_mdls/pd_vial.mdl"); // DropVial -- dumptruck_ds
 	precache_sound ("items/r_item1.wav");
-	precache_sound ("dump/pd_armor1_sh.wav"); // DropShard -- dumptruck_ds
-	precache_model ("progs/pd_armor_sh.mdl");
+	precache_sound ("dump/armsh1.wav"); // DropShard -- dumptruck_ds
+	precache_model ("progs/armshr.mdl");
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.
@@ -523,6 +523,27 @@ void() worldspawn =
 	lightstyle(63, "a");
 };
 
+void() RestartLoopSounds_think = {
+	sound(self, self.impulse, self.noise, self.volume, self.speed);
+};
+
+void() RestartLoopSounds = {
+	entity e;
+	e = find(world, classname, "play_sound_triggered");
+	while (e) {
+
+		if (e.spawnflags & 3 == 3) { // both "toggle" and "looped" need to be set
+			if (e.state == 1) {
+				e.nextthink = time + 0.1;
+				e.think = RestartLoopSounds_think;
+			}
+		}
+
+		e = find(e, classname, "play_sound_triggered");
+	}
+};
+
+
 void() StartFrame =
 {
 	if (!done_inhibition_summary)  // new spawnflags for all entities -- iw
@@ -531,6 +552,19 @@ void() StartFrame =
 	teamplay = cvar("teamplay");
 	skill = cvar("skill");
 	framecount = framecount + 1;
+
+	if (cleanUpClientStuff) {
+		cleanUpClientStuff -= 1;
+
+		RestartLoopSounds();
+	}
+	else if (!gamestarted && framecount > 2)
+	{
+		if (framecount != 3)
+			cleanUpClientStuff += 2;
+
+		gamestarted = TRUE;
+	}
 };
 
 /*

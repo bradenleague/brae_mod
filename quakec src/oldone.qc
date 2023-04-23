@@ -259,6 +259,9 @@ void() monster_oldone =
 	if (SUB_Inhibit ())  // new spawnflags for all entities -- iw
 		return;
 
+	if (self.spawnflags & I_AM_TURRET)
+		objerror("Incompatible spawnflag: TURRET_MODE\n");
+
 	if (deathmatch)
 	{
 		remove(self);
@@ -286,6 +289,7 @@ void() monster_oldone =
 	self.takedamage = DAMAGE_YES;
 	self.th_pain = nopain;
 	self.th_die = finale_1;
+	self.touch = monster_touch;	// 1998-09-16 Sliding/not-jumping on monsters/boxes/players fix by Maddes/Kryten
 	shub = self;
 
 	total_monsters = total_monsters + 1;

@@ -356,9 +356,11 @@ void () func_breakable_die = {
 		setorigin (self, self.origin);
 		DropStuff();
 		if (self.spawnflags & BREAK_CUSTOM) {
+			if (self.switchshadstyle) lightstyle(self.switchshadstyle, "m");
 			make_breakable_templates_debris ();
 			remove (self);
 		} else {
+			if (self.switchshadstyle) lightstyle(self.switchshadstyle, "m");
 			make_breakable_debris ();
 			remove (self);
 		}
@@ -472,39 +474,47 @@ void () func_breakable = {
 		|| self.style == 24 || self.style == 31)
 		if !(self.noise1)
 	{
-		precache_sound("break/pd_metal2.wav");
-		self.noise1 = "break/pd_metal2.wav";
+		precache_sound("break/metal2.wav");
+		self.noise1 = "break/metal2.wav";
 	}
 	if (self.style == 3 || self.style == 4 || self.style == 5)
 		if !(self.noise1)
 	{
-		precache_sound("break/pd_wood1.wav");
-		precache_sound("break/pd_wood2.wav");
+		precache_sound("break/wood1.wav");
+		precache_sound("break/wood2.wav");
 		if (random() > 0.6) // wood only randomized
-		self.noise1 = "break/pd_wood1.wav";
+		self.noise1 = "break/wood1.wav";
 		else
-		self.noise1 = "break/pd_wood2.wav";
+		self.noise1 = "break/wood2.wav";
 	}
 	// glass sounds -- this is more of a shattering sound anyway
 	if (self.style == 6 || self.style == 7 || self.style == 8 || self.style == 9 || self.style == 10)
 		if !(self.noise1)
 	{
-		precache_sound("break/pd_metal1.wav");
-		self.noise1 = "break/pd_metal1.wav";
+		precache_sound("break/metal1.wav");
+		self.noise1 = "break/metal1.wav";
 	}
 	if (self.style == 1 || self.style == 2 || self.style == 13 || self.style == 14
 		|| self.style == 15 || self.style == 16 || self.style == 20 || self.style == 21
 		|| self.style == 22 || self.style == 23)
 		if !(self.noise1)
 	{
-		precache_sound("break/pd_bricks1.wav");
-		self.noise1 = "break/pd_bricks1.wav";
+		precache_sound("break/stones1.wav");
+		precache_sound("break/bricks1.wav");
+		if (random() > 0.6) // wood only randomized
+		self.noise1 = "break/bricks1.wav";
+		else
+		self.noise1 = "break/stones1.wav";
 	}
 	if (self.style == 25 || self.style == 26 || self.style == 27 || self.style == 28 || self.style == 29 || self.style == 30)
 		if !(self.noise1)
 	{
-		precache_sound("break/pd_stones1.wav");
-		self.noise1 = "break/pd_stones1.wav";
+		precache_sound("break/stones1.wav");
+		precache_sound("break/bricks1.wav");
+		if (random() > 0.6) // wood only randomized
+		self.noise1 = "break/stones1.wav";
+		else
+		self.noise1 = "break/bricks1.wav";
 	}
 	// else
 	// 	(self.noise1 = "blob/hit1.wav");
@@ -524,6 +534,7 @@ void () func_breakable = {
 		self.th_die = func_breakable_killed;
 	}
 
+	if (self.switchshadstyle) lightstyle(self.switchshadstyle, "a");
 };
 
 /*
@@ -577,6 +588,8 @@ void() trigger_ladder =
 
 	InitTrigger ();
 	self.touch = ladder_touch;
+
+	SUB_CheckWaiting();
 };
 /*
 ===============================================================================
@@ -651,7 +664,7 @@ void () func_laser_use =
 
 /*QUAKED func_laser (0 .5 .8) ? START_OFF LASER_SOLID X X X X X X NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD_OR_NIGHTMARE NOT_IN_DEATHMATCH NOT_IN_COOP NOT_IN_SINGLEPLAYER X NOT_ON_HARD_ONLY NOT_ON_NIGHTMARE_ONLY
 
-A togglable laser, hurts to touch, can be used to block players
+A toggleable laser, hurts to touch, can be used to block players
 
 START_OFF: Laser starts off.
 
@@ -801,7 +814,14 @@ void() make_sparks =
 			i = i + 1;
 		}
 		if (self.sounds == 1)
-			sound (self, CHAN_AUTO, "dump/spark.wav", 1, ATTN_STATIC);
+			{
+				if (self.noise != "")
+					{
+					sound (self, CHAN_AUTO, self.noise, 1, ATTN_STATIC);
+					}
+				else
+					sound (self, CHAN_AUTO, "enforcer/enfstop.wav", 1, ATTN_STATIC);
+			}
 		SUB_UseTargets();
 		self.nextthink = time + 0.1 + random() * 0.1;
 		self.think = spark_turnofflight;
@@ -834,7 +854,10 @@ void() misc_sparks =
 		return;
 
 	precache_model ("progs/spark.mdl");
+	if (!self.noise)
 	precache_sound ("dump/spark.wav");
+	else
+	precache_sound (self.noise);
 
 	if (!self.movedir)
 		self.movedir = '0 0 -30';

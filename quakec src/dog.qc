@@ -73,8 +73,13 @@ void()	Dog_JumpTouch =
 	{
 		if ( vlen(self.velocity) > 300 )
 		{
-			ldmg = 10 + 10*random();
-			T_Damage (other, self, self, ldmg);
+			if !(self.worldtype)
+	      {
+					ldmg = 10 + 10*random();
+					T_Damage (other, self, self, ldmg);
+					if (other.health > 0) // is the player still alive? Preach's instakill bug check - dumptruck_ds
+					self.worldtype = 1;
+				}
 		}
 	}
 
@@ -83,7 +88,10 @@ void()	Dog_JumpTouch =
 		if (self.flags & FL_ONGROUND)
 		{	// jump randomly to not get hung up
 //dprint ("popjump\n");
-	self.touch = SUB_Null;
+// 1998-09-16 Sliding/not-jumping on monsters/boxes/players fix by Maddes/Kryten  start
+//			self.touch = SUB_Null;
+	self.touch = monster_touch;
+// 1998-09-16 Sliding/not-jumping on monsters/boxes/players fix by Maddes/Kryten  end
 	self.think = dog_leap1;
 	self.nextthink = time + 0.1;
 
@@ -95,7 +103,10 @@ void()	Dog_JumpTouch =
 		return;	// not on ground yet
 	}
 
-	self.touch = SUB_Null;
+	// 1998-09-16 Sliding/not-jumping on monsters/boxes/players fix by Maddes/Kryten  start
+	//	self.touch = SUB_Null;
+	self.touch = monster_touch;
+	// 1998-09-16 Sliding/not-jumping on monsters/boxes/players fix by Maddes/Kryten  end
 	self.think = dog_run1;
 	self.nextthink = time + 0.1;
 };
@@ -154,7 +165,7 @@ void() dog_leap1	=[	$leap1,		dog_leap2	] {ai_face();};
 void() dog_leap2	=[	$leap2,		dog_leap3	]
 {
 	ai_face();
-
+	self.worldtype = 0; //fix for instakill bug -- dumptruck_ds
 	self.touch = Dog_JumpTouch;
 	makevectors (self.angles);
 	self.origin_z = self.origin_z + 1;
@@ -396,6 +407,12 @@ spawn_angry(Choices)
 0 : "Only when trigger spawned, default behavior - not angry"
 1 : "Only when trigger spawned, set to 1 to spawn angry at player"
 
+infight_mode(Choices)
+0 : "Default behavior, only with different classnames"
+1 : "Infight with monsters with the same classname but a different mdl_body"
+2 : "Infight with monsters with the same classname and model but a different skin"
+3 : "Infight no matter what"
+
 health(integer) : "Set this to a custom health amount"
 pain_target(string) : "Fire this target when pain_threshold is reached"
 pain_threshold(integer) : "Fire pain_target when health drops below this amount"
@@ -410,6 +427,9 @@ void() monster_dog =
 {
 	if (SUB_Inhibit ())  // new spawnflags for all entities -- iw
 		return;
+
+	if (self.spawnflags & I_AM_TURRET)
+		objerror("Incompatible spawnflag: TURRET_MODE\n");
 
 	if (deathmatch)
 	{

@@ -313,7 +313,82 @@ void() zombie_missile =
 	else
 		zombie_attc1 ();
 };
+//////////////////////////
+/// turret frames START
+/////////////////////////
+void() zombie_turret_atta1 =[      $atta1,         zombie_turret_atta2    ] {self.health = 60;ai_face();};
+void() zombie_turret_atta2 =[      $atta2,         zombie_turret_atta3    ] {ai_face();};
+void() zombie_turret_atta3 =[      $atta3,         zombie_turret_atta4    ] {ai_face();};
+void() zombie_turret_atta4 =[      $atta4,         zombie_turret_atta5    ] {ai_face();};
+void() zombie_turret_atta5 =[      $atta5,         zombie_turret_atta6    ] {ai_face();};
+void() zombie_turret_atta6 =[      $atta6,         zombie_turret_atta7    ] {ai_face();};
+void() zombie_turret_atta7 =[      $atta7,         zombie_turret_atta8    ] {ai_face();};
+void() zombie_turret_atta8 =[      $atta8,         zombie_turret_atta9    ] {ai_face();};
+void() zombie_turret_atta9 =[      $atta9,         zombie_turret_atta10   ] {ai_face();};
+void() zombie_turret_atta10 =[      $atta10,        zombie_turret_atta11   ] {ai_face();self.attack_elevation = IterateElevation(OGRE_DEFAULT_ELEVATION, self.enemy.origin);};
+void() zombie_turret_atta11 =[      $atta11,        zombie_turret_atta12   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_atta12 =[      $atta12,        zombie_turret_atta13   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_atta13 =[      $atta13,        alt_zombie_seek_stand1    ] {ai_run(0);PreachFireZombie(self.attack_elevation);};
 
+void() zombie_turret_attb1 =[      $attb1,         zombie_turret_attb2    ] {self.health = 60;ai_face();};
+void() zombie_turret_attb2 =[      $attb2,         zombie_turret_attb3    ] {ai_face();};
+void() zombie_turret_attb3 =[      $attb3,         zombie_turret_attb4    ] {ai_face();};
+void() zombie_turret_attb4 =[      $attb4,         zombie_turret_attb5    ] {ai_face();};
+void() zombie_turret_attb5 =[      $attb5,         zombie_turret_attb6    ] {ai_face();};
+void() zombie_turret_attb6 =[      $attb6,         zombie_turret_attb7    ] {ai_face();};
+void() zombie_turret_attb7 =[      $attb7,         zombie_turret_attb8    ] {ai_face();};
+void() zombie_turret_attb8 =[      $attb8,         zombie_turret_attb9    ] {ai_face();};
+void() zombie_turret_attb9 =[      $attb9,         zombie_turret_attb10   ] {ai_face();};
+void() zombie_turret_attb10 =[      $attb10,        zombie_turret_attb11   ] {ai_face();};
+void() zombie_turret_attb11 =[      $attb11,        zombie_turret_attb12   ] {ai_face();self.attack_elevation = IterateElevation(OGRE_DEFAULT_ELEVATION, self.enemy.origin);};
+void() zombie_turret_attb12 =[      $attb12,        zombie_turret_attb13   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_attb13 =[      $attb13,        zombie_turret_attb14   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_attb14 =[      $attb13,        alt_zombie_seek_stand1      ] {ai_run(0);PreachFireZombie(self.attack_elevation);};
+
+void() zombie_turret_attc1 =[      $attc1,         zombie_turret_attc2    ] {self.health = 60;ai_face();};
+void() zombie_turret_attc2 =[      $attc2,         zombie_turret_attc3    ] {ai_face();};
+void() zombie_turret_attc3 =[      $attc3,         zombie_turret_attc4    ] {ai_face();};
+void() zombie_turret_attc4 =[      $attc4,         zombie_turret_attc5    ] {ai_face();};
+void() zombie_turret_attc5 =[      $attc5,         zombie_turret_attc6    ] {ai_face();};
+void() zombie_turret_attc6 =[      $attc6,         zombie_turret_attc7    ] {ai_face();};
+void() zombie_turret_attc7 =[      $attc7,         zombie_turret_attc8    ] {ai_face();};
+void() zombie_turret_attc8 =[      $attc8,         zombie_turret_attc9    ] {ai_face();};
+void() zombie_turret_attc9 =[      $attc9,         zombie_turret_attc10   ] {ai_face();self.attack_elevation = IterateElevation(OGRE_DEFAULT_ELEVATION, self.enemy.origin);};
+void() zombie_turret_attc10 =[      $attc10,        zombie_turret_attc11   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_attc11 =[      $attc11,        zombie_turret_attc12   ] {ai_face();self.attack_elevation = IterateElevation(self.attack_elevation, self.enemy.origin);};
+void() zombie_turret_attc12 =[      $attc12,        alt_zombie_seek_stand1 ] {ai_run(0);PreachFireZombie(self.attack_elevation);};
+void() alt_zombie_seek_stand1 =[      $stand1, alt_zombie_seek_stand2   ] {self.health = 60; ai_run(0);};
+void() alt_zombie_seek_stand2 =[      $stand2, zombie_seek_stand3   ] {ai_run(0);};
+void() zombie_seek_stand3    =[      $stand3,                zombie_seek_stand4   ] {ai_run(0);};
+void() zombie_seek_stand4    =[      $stand4,                zombie_seek_stand5   ] {ai_run(0);};
+void() zombie_seek_stand5    =[      $stand5,                zombie_seek_stand6   ] {ai_run(0);};
+void() zombie_seek_stand6    =[      $stand6,                zombie_seek_stand7   ] {ai_run(0);};
+void() zombie_seek_stand7    =[      $stand7,                zombie_seek_stand8   ] {ai_run(0);};
+void() zombie_seek_stand8    =[      $stand8,                zombie_seek_stand9   ] {ai_run(0);};
+void() zombie_seek_stand9    =[      $stand9,                zombie_seek_stand10  ] {ai_run(0);};
+void() zombie_seek_stand10   =[      $stand10,               zombie_seek_stand11  ] {ai_run(0);};
+void() zombie_seek_stand11   =[      $stand11,               zombie_seek_stand12  ] {ai_run(0);};
+void() zombie_seek_stand12   =[      $stand12,               zombie_seek_stand13  ] {ai_run(0);};
+void() zombie_seek_stand13   =[      $stand13,               zombie_seek_stand14  ] {ai_run(0);};
+void() zombie_seek_stand14   =[      $stand14,               zombie_seek_stand15  ] {ai_run(0);};
+void() zombie_seek_stand15   =[      $stand15,               alt_zombie_seek_stand1   ] {ai_run(0);};
+
+void() zombie_turret_missile =
+{
+	local float     r;
+
+	r = random();
+
+	if (r < 0.3)
+		zombie_turret_attb1 ();
+	else if (r < 0.6)
+		zombie_turret_atta1 ();
+	else
+		zombie_turret_attc1 ();
+};
+//////////////////////////
+/// turret frames END
+/////////////////////////
 
 /*
 =============================================================================
@@ -513,6 +588,18 @@ FIXME: don't use pain_finished because of nightmare hack
 */
 void(entity attacker, float take) zombie_pain =
 {
+	if (self.spawnflags & I_AM_TURRET)
+		{
+			self.health = 60;               // always reset health
+
+			if (take >= 60)
+				{
+					zombie_die();
+				}
+			else
+				return;
+		}
+
 	local float r;
 
 	self.health = 60;               // always reset health
@@ -684,6 +771,12 @@ spawn_angry(Choices)
 0 : "Only when trigger spawned, default behavior - not angry"
 1 : "Only when trigger spawned, set to 1 to spawn angry at player"
 
+infight_mode(Choices)
+0 : "Default behavior, only with different classnames"
+1 : "Infight with monsters with the same classname but a different mdl_body"
+2 : "Infight with monsters with the same classname and model but a different skin"
+3 : "Infight no matter what"
+
 health(integer) : "Set this to a custom health amount"
 pain_target(string) : "Fire this target when pain_threshold is reached"
 pain_threshold(integer) : "Fire pain_target when health drops below this amount"
@@ -735,19 +828,19 @@ void() monster_zombie =
 
 	self.th_stand = zombie_start;
 	self.th_walk = zombie_walk1;
-	self.th_run = zombie_decide;
+	if (self.spawnflags & I_AM_TURRET)
+	{
+		self.th_run = alt_zombie_seek_stand1;
+	}
+	else
+	{
+		self.th_run = zombie_decide;
+	}
+
 	self.th_pain = zombie_pain;
 	self.th_die = zombie_die;
+	self.th_turret = zombie_turret_missile;
 	self.th_missile = zombie_missile;
-
-	// if (self.spawnflags & TRIGGER_SPAWN) -- not used in progs_dump -- dumptruck_ds
-	// {
-	// 	self.use = zombie_start2;
-	// 	total_monsters = total_monsters + 1;
-	// 	return;
-	// }
-
-
 	self.solid = SOLID_SLIDEBOX;
 	self.movetype = MOVETYPE_STEP;
 
@@ -767,22 +860,6 @@ void() monster_zombie =
 		self.movetype = MOVETYPE_NONE;
 		zombie_dead_cruc1 ();
 	}
-	// else if (self.spawnflags & SPAWN_DEAD)  //-- not used in progs_dump -- dumptruck_ds
-	// {
-	// 	self.origin_z = self.origin_z + 1;      // raise off floor a bit
-	// 	droptofloor();
-	//
-	// 	if (!walkmove(0,0))
-	// 	{
-	// 		dprint ("walkmonster in wall at: ");
-	// 		dprint (vtos(self.origin));
-	// 		dprint ("\n");
-	// 	}
-	// 	self.takedamage = DAMAGE_NO;
-	// 	self.solid = SOLID_NOT;
-	// 	self.use = zombie_use;
-	// 	self.frame = $paine11;
-	// }
 	else
 		walkmonster_start();
 };

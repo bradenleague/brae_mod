@@ -865,6 +865,7 @@ void() gib_misc_3 =
 // wait = wait this long before falling
 // ==============================================================================*/
 float DONT_FADE = 1;
+float SILENT = 2;
 
 void() func_fall_think =
 {
@@ -909,10 +910,13 @@ void() fall_touch =
     self.attack_finished = time + self.wait;
     self.cnt = TRUE;
 
-    if (self.noise != "")
+    if (!(self.spawnflags & SILENT))
+    {
+      if (self.noise != "")
         sound (self, CHAN_AUTO, self.noise, 1, ATTN_NORM);
-    else
+      else
         sound (self, CHAN_AUTO, "buttons/switch21.wav", 1, ATTN_NORM);
+    }
 };
 
 void() fall_use =  // thanks again RennyC for help on revisions --dumptruck_ds
@@ -1043,8 +1047,35 @@ void() misc_particle_stream =
 //##########################################
 // Original entity submitted by Jan Martin Mathiassen, aka. TGR
 
+void() heal_think = 
+{
+  if (self.cnt == self.count)
+  {
+    dprint("trigger_heal think: full\n");
+    self.think = SUB_Null;
+    return;
+  }
+  local float recharge_amount = self.speed;
+  if (self.count < (self.cnt + self.speed))
+  {
+    recharge_amount = self.count - self.cnt;
+  }
+  dprint("trigger_heal think: [max: ");
+  dprint(ftos(self.count));
+  dprint(", current: ");
+  dprint(ftos(self.cnt));
+  dprint(", recharging: ");
+  dprint(ftos(recharge_amount));
+  dprint("]\n");
+
+  self.cnt = self.cnt + recharge_amount;
+  self.nextthink = time + self.delay;
+};
+
 void() heal_touch =
 {
+  if (self.estate != STATE_ACTIVE)
+    return;
   if (other.movetype == MOVETYPE_NOCLIP) // from Copper -- dumptruck_ds
     return FALSE;
 	if(self.spawnflags & HEAL_PLAYER_ONLY && other.classname != "player")
@@ -1057,6 +1088,13 @@ void() heal_touch =
 	if(other.heal_timer > time)
 		return;
 
+  if(self.count && self.cnt <= 0)
+  { 
+    if(self.message2)
+      centerprint(other, self.message2);
+    return;
+  }
+
 	if ((other.takedamage) && (other.health < self.health_max))
 	{
 
@@ -1064,22 +1102,42 @@ void() heal_touch =
         sound (self, CHAN_AUTO, self.noise, 1, ATTN_NORM);
     else
         sound (self, CHAN_AUTO, "items/r_item1.wav", 1, ATTN_NORM);
-
+    local float calculated_healing;
 		if ((other.health + self.heal_amount) > self.health_max)
 		{
-			// if(self.spawnflags & HEAL_OBEY_MAX)
-			// 	T_Heal (other, (self.health - other.health), 0);
-			// else
-				T_Heal (other, (self.health_max - other.health), 1);
+      calculated_healing = self.health_max - other.health;
 		}
 		else
 		{
-			// if(self.spawnflags & HEAL_OBEY_MAX)
-			// 	T_Heal (other, self.cnt, 0);
-			// else
-				T_Heal (other, self.heal_amount, 1);
+      calculated_healing = self.heal_amount;
 		}
 
+    if (self.count) 
+    {
+      
+      if (calculated_healing > self.cnt)
+      {
+        calculated_healing = self.cnt;
+      }
+      self.cnt = self.cnt - calculated_healing;
+      if (self.delay)
+      {
+        self.think = heal_think;
+        self.nextthink = time + self.delay;
+      } 
+      dprint("trigger_heal used: [max: ");
+      dprint(ftos(self.count));
+      dprint(", current: ");
+      dprint(ftos(self.cnt));
+      dprint(", using: ");
+      dprint(ftos(calculated_healing));
+      dprint("]\n");
+    }
+    if (self.message)
+    {
+      centerprint(other, self.message);
+    }
+    T_Heal (other, calculated_healing, 1);
 		other.heal_timer = time + self.wait;
 	}
 };
@@ -1100,6 +1158,11 @@ wait -- the time between each healing (default 1)
 health_max -- the upper limit for the healing (default 100, max 250)
 sounds -- set to 1 to enable the noise1 field for custom healing sound
 noise -- path to custom sound file
+message -- message to print on heal
+count -- maximum heal before exhausted
+speed -- amount to recharge at a time
+delay -- time before recharging
+message2 -- message to print when exhausted
 */
 void() trigger_heal =
   {
@@ -1120,14 +1183,29 @@ void() trigger_heal =
 	else if (self.health_max > 250)
 		self.health_max = 250;
 
-	if(self.targetname)
-	{
-		self.use = heal_toggle;
-		if(self.spawnflags & HEAL_START_ON)
-			self.touch = heal_touch;
-		else
-			self.touch = SUB_Null;
-	}
-	else
+  if (self.count)
+  {
+    self.cnt = self.count;
+
+    if (self.speed && !self.delay)
+    {
+      self.delay = 10;
+    } else if (!self.speed && self.delay)
+    {
+      self.speed = 5;
+    }
+  }
+
+	// if(self.targetname)
+	// {
+	// 	self.use = heal_toggle;
+	// 	if(self.spawnflags & HEAL_START_ON)
+	// 		self.touch = heal_touch;
+	// 	else
+	// 		self.touch = SUB_Null;
+	// }
+	// else
 		self.touch = heal_touch;
+
+  SUB_CheckWaiting();
 };

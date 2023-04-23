@@ -81,10 +81,22 @@ void() trigger_usekey =
 
 	keylock_init ();
 
-	if (self.spawnflags & USE_SILV_KEY) //dumptruck_ds
+	if (self.spawnflags & USE_SILV_KEY) {//dumptruck_ds
 		keylock_set_silver_key ();
-	if (self.spawnflags & USE_GOLD_KEY) //dumptruck_ds
+
+		if (self.keyname != "") {
+			self.netname = self.keyname;
+			self.keyname = "";
+		}
+	}
+	if (self.spawnflags & USE_GOLD_KEY) {//dumptruck_ds
 		keylock_set_gold_key ();
+		
+		if (self.keyname != "") {
+			self.netname = self.keyname;
+			self.keyname = "";
+		}
+	}
 
 // support for item_key_custom -- iw
 	if (self.keyname != "")
@@ -103,6 +115,7 @@ void() trigger_usekey =
 	self.touch = keytrigger_touch;
 
 	InitTrigger ();
+	SUB_CheckWaiting();
 };
 
 // void() remove_touch =
@@ -143,24 +156,20 @@ trigger_setgravity
 float DT_GRAVTOFF = 8;  // trigger will start off
 
 void() grav_toggle = //dumptruck_ds based on hipnotic blocker_use
-
 {
-if ( !self.state )
-	{
-		self.state = 1;
-	setorigin( self, self.origin - '8000 8000 8000');
-	}
-else
-	{
-		self.state = 0;
-	setorigin( self, self.origin + '8000 8000 8000');
-	}
+	if (self.estate != STATE_ACTIVE)
+		self.estate = STATE_ACTIVE;
+	else
+		self.estate = STATE_INACTIVE;
+
 };
 
 void() trigger_gravity_touch =
 {
   // from Copper -- dumptruck_ds
   // if (!CheckValidTouch()) return;
+
+	if (self.estate != STATE_ACTIVE) return;
 
 	local float grav;
 
@@ -213,19 +222,17 @@ void() trigger_setgravity =
 		return;
 
 	InitTrigger ();
+
 	self.use = grav_toggle; // dumptruck_ds
 	self.touch = trigger_gravity_touch;
+
 	if ( self.spawnflags & DT_GRAVTOFF ) //dumptruck_ds
-		 {
-		 self.state = 0;
-		 setorigin( self, self.origin + '8000 8000 8000' );
-		 }
-	else
-		{
-		 self.state = 1;
-	 }  //end dumptruck_ds
+		self.estate = STATE_INACTIVE;
+
 	if (!self.gravity)
 		self.gravity = -1;
 	else
-	      self.gravity = ((self.gravity - 1) / 100);
+	    self.gravity = ((self.gravity - 1) / 100);
+
+	SUB_CheckWaiting();
 };

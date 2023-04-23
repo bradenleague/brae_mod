@@ -63,6 +63,9 @@ void() door_hit_bottom =
 
 void() door_go_down =
 {
+	entity shadow;
+	entity oldself;
+	
 	sound (self, CHAN_VOICE, self.noise2, 1, ATTN_NORM);
 	if (self.max_health)
 	{
@@ -72,10 +75,30 @@ void() door_go_down =
 
 	self.state = STATE_DOWN;
 	SUB_CalcMove (self.pos1, self.speed, door_hit_bottom);
+	
+	if(self.switchshadstyle) {
+		shadow = self.shadowcontroller;
+		oldself = self;
+		self = shadow;
+		
+		if(oldself.spawnflags & DOOR_START_OPEN) {
+			shadow_fade_out();
+			shadow.shadowoff = 1;
+		} else {
+			shadow_fade_in();
+			shadow.shadowoff = 0;
+		}
+		
+		self = oldself;
+		
+	}
 };
 
 void() door_go_up =
 {
+	entity shadow;
+	entity oldself;
+	
 	if (self.state == STATE_UP)
 		return;		// allready going up
 
@@ -90,8 +113,54 @@ void() door_go_up =
 	SUB_CalcMove (self.pos2, self.speed, door_hit_top);
 
 	SUB_UseTargets();
+	
+	if(self.switchshadstyle) {
+		shadow = self.shadowcontroller;
+		oldself = self;
+		self = shadow;
+		
+		if(oldself.spawnflags & DOOR_START_OPEN) {
+			shadow_fade_in();
+			shadow.shadowoff = 0;
+		} else {
+			shadow_fade_out();
+			shadow.shadowoff = 1;
+		}
+		
+		self = oldself;
+	}
 };
 
+
+void() door_group_go_down = {
+	local entity oself, starte;
+	
+	oself = self;
+	starte = self;
+
+	do
+	{
+		door_go_down ();
+		self = self.enemy;
+	} while ( (self != starte) && (self != world) );
+	self = oself;
+
+};
+
+void() door_group_go_up = {
+	local entity oself, starte;
+	
+	oself = self;
+	starte = self;
+
+	do
+	{
+		door_go_up ();
+		self = self.enemy;
+	} while ( (self != starte) && (self != world) );
+
+	self = oself;
+};
 
 /*
 =============================================================================
@@ -103,40 +172,28 @@ ACTIVATION FUNCTIONS
 
 void() door_fire =
 {
-	local entity 	oself;
-	local entity	starte;
 
 	if (self.owner != self)
 		objerror ("door_fire: self.owner != self");
 
+	if (self.estate != STATE_ACTIVE) 
+		return;
 // self.noise4 is now played in keylock_try_to_unlock -- iw
 
 	self.message = string_null;		// no more message
-	oself = self;
+	
 
 	if (self.spawnflags & DOOR_TOGGLE)
 	{
 		if (self.state == STATE_UP || self.state == STATE_TOP)
 		{
-			starte = self;
-			do
-			{
-				door_go_down ();
-				self = self.enemy;
-			} while ( (self != starte) && (self != world) );
-			self = oself;
+			door_group_go_down();
 			return;
 		}
 	}
 
-// trigger all paired doors
-	starte = self;
-	do
-	{
-		door_go_up ();
-		self = self.enemy;
-	} while ( (self != starte) && (self != world) );
-	self = oself;
+	// trigger all paired doors
+	door_group_go_up();
 };
 
 
@@ -241,6 +298,91 @@ void() door_touch =
 
 	keylock_try_to_unlock (other, "", door_unlock);
 };
+
+
+
+/*
+=============================================================================
+ENTITY STATE FUNCTIONS
+=============================================================================
+*/
+
+void(entity e, float closealldoors) door_estate_lock = {
+	local entity oself, next;
+
+	if (e.owner.estate == STATE_INACTIVE) return;
+
+	// blocks linked doors from updating the same owner repeatedly
+	if (e.owner.last_setstate == self && e.owner.last_setstate_frame == framecount) return;
+
+	oself = self;
+	self = e.owner;
+	
+	self.estate = STATE_INACTIVE;
+
+	self.last_setstate = oself;
+	self.last_setstate_frame = framecount;
+
+	self.prevstate = self.state;
+	
+	if (self.state == STATE_UP || self.state == STATE_TOP) {
+		if (
+			// don't close wait -1 nor toggleable doors...
+			!(self.wait == -1 || (self.spawnflags & DOOR_TOGGLE)) 
+			// ...unless the trigger_setstate has a "Close all doors" spawnflag on
+			|| closealldoors
+		) 
+			door_group_go_down();
+		
+	}
+
+	if (self.max_health) {
+		next = self;
+		do {
+			//e.health = 0;
+			next.takedamage = DAMAGE_NO;
+			next = next.enemy;
+		} while ( (next != self) && (next != world) );
+	}
+
+	self = oself;
+
+}
+
+void(entity e, float openalldoors) door_estate_unlock = {
+	local entity oself, next;
+	
+	if (e.owner.estate == STATE_ACTIVE) return;
+
+	// blocks linked doors from updating the same owner repeatedly
+	if (e.owner.last_setstate == self && e.owner.last_setstate_frame == framecount) return;
+
+	oself = self;
+	self = e.owner;
+
+	self.last_setstate = oself;
+	self.last_setstate_frame = framecount;
+
+	if (self.prevstate == STATE_UP || self.prevstate == STATE_TOP) {
+		if (
+			(self.wait == -1 || (self.spawnflags & DOOR_TOGGLE))
+			&& openalldoors
+		) door_group_go_up();
+	}
+
+	if (self.max_health) {
+		next = self;
+		do {
+			next.health = next.max_health;
+			next.takedamage = DAMAGE_YES;
+			next = next.enemy;
+		} while ( (next != self) && (next != world) );
+	}
+
+	self.estate = STATE_ACTIVE;
+	self = oself;
+}
+
 
 /*
 =============================================================================
@@ -411,6 +553,8 @@ void() func_door =
 
 	local string default_noise1;
 	local string default_noise2;
+	entity shadow;
+	entity oldself;
 
 // self.noise3 and self.noise4 can now be overridden by the mapper, but
 // will be set to default values in keylock_init if necessary -- iw
@@ -455,15 +599,27 @@ void() func_door =
 	self.movetype = MOVETYPE_PUSH;
 	setorigin (self, self.origin);
 	setmodel (self, self.model);
-	self.classname = "door";
+	//self.classname = "door";
 
 	self.blocked = door_blocked;
 	self.use = door_use;
 
-	if (self.spawnflags & DOOR_SILVER_KEY)
+	if (self.spawnflags & DOOR_SILVER_KEY){
 		keylock_set_silver_key ();
-	if (self.spawnflags & DOOR_GOLD_KEY)
+		
+		if (self.keyname != "") {
+			self.netname = self.keyname;
+			self.keyname = "";
+		}
+	}
+	if (self.spawnflags & DOOR_GOLD_KEY){
 		keylock_set_gold_key ();
+
+		if (self.keyname != "") {
+			self.netname = self.keyname;
+			self.keyname = "";
+		}
+	}
 
 // support for item_key_custom -- iw
 	if (self.keyname != "")
@@ -517,6 +673,29 @@ void() func_door =
 // the sizes can be detected properly.
 	self.think = LinkDoors;
 	self.nextthink = self.ltime + 0.1;
+	
+	// creates a shadow controller entity for the door if it has switchable shadows
+	if(self.switchshadstyle) {
+		
+		shadow = spawn();
+		
+		self.shadowcontroller = shadow;
+		
+		shadow.classname = "misc_shadowcontroller";
+		shadow.switchshadstyle = self.switchshadstyle;
+		shadow.speed = vlen(self.pos2 - self.pos1) / self.speed;
+		
+		if(self.spawnflags & DOOR_START_OPEN) shadow.spawnflags = 1;
+		else shadow.spawnflags = 0;
+		
+		
+		oldself = self;
+		
+		self = shadow;
+		misc_shadowcontroller();
+		
+		self = oldself;
+	}
 };
 
 /*
@@ -745,7 +924,7 @@ void () func_door_secret =
 	self.angles = '0 0 0';
 	self.solid = SOLID_BSP;
 	self.movetype = MOVETYPE_PUSH;
-	self.classname = "door";
+	//self.classname = "door";
 	setmodel (self, self.model);
 	setorigin (self, self.origin);
 
