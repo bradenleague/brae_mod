@@ -1,5 +1,5 @@
 # Don't need autosaves
-.autosave/
+autosave/
 
 #this too
-.maps/autosave
+maps/autosave/
